@@ -1,5 +1,6 @@
 import pandas as pd
 import unittest
+from pandas.testing import assert_frame_equal
 from ETL import CleanCustomerFile
 
 class TestETL(unittest.TestCase):
@@ -13,12 +14,12 @@ class TestETL(unittest.TestCase):
             'Customer Name': ['Jose', 'Luis', 'Daniel', 'Oscar']
         }
 
-        self.df_Customers = pd.DataFrame(data_source).reset_index()
+        self.df_Customers = pd.DataFrame(data_source)
         self.df_CustomersCleaned = pd.DataFrame(data_output)
-#        self.RemoveDuplicates = CleanCustomerFile()
+        self.df_CustomersCleaned['Customer Name'] = self.df_CustomersCleaned['Customer Name'].astype('string')  #Make sure that the Customer name column is of the same type as in the ETL.py function.
 
     def test_RemoveDuplicates(self):
-        self.assertEqual(CleanCustomerFile(self.df_Customers),self.df_CustomersCleaned,'Duplicates were not removed')
+        assert_frame_equal(CleanCustomerFile(self.df_Customers),self.df_CustomersCleaned)
 
     
     def tearDown(self):

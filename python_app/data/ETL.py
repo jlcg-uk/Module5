@@ -18,10 +18,10 @@ def LoadCSVs():
 def CleanCustomerFile(df_customers):
 
     #Remove duplicates:
-    df_customers.drop_duplicates().reset_index(drop=True)
+    df_customers_cleaned = df_customers.drop_duplicates().reset_index(drop =  True)
 
     #Drop NA rows
-    df_customers_cleaned = df_customers.dropna().reset_index(drop=True)
+    df_customers_cleaned = df_customers_cleaned.dropna().reset_index(drop =  True)
 
     #Ensure consistency of data types
     df_customers_cleaned['Customer ID'] = df_customers_cleaned['Customer ID'].astype('int64')
@@ -31,13 +31,13 @@ def CleanCustomerFile(df_customers):
 
 def cleanBooksFile(df_books):
     # Remove duplicates:
-    df_books.drop_duplicates()
+    df_books_cleaned = df_books.drop_duplicates()
 
     # Save nan values in a new df before deleting them:
     df_books_nan = df_books[df_books.isna().any(axis=1)]
 
     #Drop NA rows:
-    df_books_cleaned = df_books.dropna()
+    df_books_cleaned = df_books_cleaned.dropna()
 
     #Ensure consistency of data types:
     df_books_cleaned['Id'] = df_books_cleaned['Id'].astype('int64')

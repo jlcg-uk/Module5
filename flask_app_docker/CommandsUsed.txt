@@ -1,0 +1,8 @@
+#Create the container (which is effectively a flask app)
+docker build -t flaskapp .
+
+#Run the container and make the container port 5000 point at the local host port 5000
+docker run -d -p5000:5000 flaskapp
+
+#Check the running containers
+docker ps

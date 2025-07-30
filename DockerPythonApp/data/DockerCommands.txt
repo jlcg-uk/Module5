@@ -1,0 +1,9 @@
+
+#Create data volumne in docker
+docker run --rm -v datavolume:/data alpine ls /data
+
+#Build the container in Docker
+docker build -t etl_app .
+
+#Mount the volume to the data directory (/data) and run the container.
+docker run -v LibraryDataVolume:/data etl_app
